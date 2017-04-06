@@ -1,0 +1,21 @@
+.print-only{
+	display: none;
+}
+
+@media print {
+	.main-footer, .main-header, .userPart, .fastConfig, a, input{
+		display: none;
+	}
+	.lesson-block.header{
+		color: #000;
+	}
+	.print-only{
+		display: block;
+	}
+	.lesson-block.practice {
+		background:#ff7;
+	}
+	.lesson-block.lecture {
+		background:#7f7;
+	}
+}

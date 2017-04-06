@@ -1,0 +1,62 @@
+﻿<div ng-controller="lessonCtrl">
+	<form name='addLesson'>
+		<div class='field'>
+			<label for="weekDay">День недели:</label>
+			<select ng-model='newLesson.weekDay' ng-options='wd.timestamp as wd.name for wd in weekDays'>
+			</select>
+		</div>
+		<div class='field'>
+			<label for="startHour">Начало пары:</label>
+			<div class="time">
+				<input type="number" required min="0" max="23" id="startHour" ng-model="newLesson.start.hour">
+				<input type="number" required min="0" max="59" id="startMin" ng-model="newLesson.start.minutes">
+			</div>
+		</div>
+		<div class='field'>
+			<label for="startHour">Конец пары:</label>
+			<div class="time">
+				<input type="number" required min="0" max="23" id="startHour" ng-model="newLesson.end.hour">
+				<input type="number" required min="0" max="59" id="startMin" ng-model="newLesson.end.minutes">
+			</div>
+		</div>
+		<div class='field'>
+			<label for="subject">Предмет:</label>
+			<select id="subject" name="subject" ng-model="newLesson.subject" ng-options="subj.ID as subj.Title for subj in subjects " ng-disabled="subjects == null" required>
+			</select>
+		</div>
+		<div ng-if="newLesson.subject == '_nf'">
+			<div class='field'>
+				<label for='newSubject'>Введите:</label>
+				<input type='text' id="newSubject" ng-model="modalData.newSubject" required>
+				<input type='text' ng-model="stopValidation" required style="display:none;">
+			</div>
+			<div class='field'>
+				<label></label>
+				<input type='button' ng-click="addSubject(newSubject)" value="Отправить" ng-disabled="(modalData.newSubject == null)||(modalData.newSubject =='')">
+			</div>
+		</div>
+		<div class='field'>
+			<label for="Room">Кабинет:</label>
+			<input type="text" id='Room' ng-model="newLesson.Room" required>
+		</div>
+		<div class='field'>
+			<label for='LessonType'>Тип урока:</label>
+			<select id='type' name='LessonType' ng-model="newLesson.LessonType" required>
+				<option value='LECTURE'>Лекция</option>
+				<option value='PRACTICE'>Практика</option>
+			</select>
+		</div>
+		<div class="field">
+			<label for="period">Повторение:</label>
+			<select ng-if='newLesson.constantRepeat==null' id='period' name='period' ng-model='newLesson.RepeatTime' required ng-options="period.ID as period.Title for period in newLesson.lessonRepeat">
+				
+			</select>
+			<input ng-if='newLesson.constantRepeat!=null' type='hidden' ng-model='newLesson.RepeatTime' ng-value='newLesson.constantRepeat.ID' id='period' name='period'>
+			<input ng-if='newLesson.constantRepeat!=null' type='text' disabled ng-value='newLesson.constantRepeat.Title' id='period2' name='period2'>
+		</div>
+		<div class='field'>
+			<label></label>
+			<input type='submit' ng-click='addNewLesson();' value='Добавить' ng-disabled='addLesson.$invalid'>
+		</div>
+	</form>
+</div>

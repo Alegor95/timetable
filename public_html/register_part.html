@@ -1,0 +1,30 @@
+﻿<div  ng-controller="userCtrl" class="inCenter">
+	<form name="register">			 
+		<div class="field">
+			<label for="surname">Фамилия:</label>
+			<input name="surname" id="surname" ng-model="surname" type="text" placeholder="Фамилия" required>
+		</div>
+		<div class="field">
+			<label for="name">Имя: </label>
+			<input name="name" id="name" ng-model="name" type="text" placeholder="Имя" required>
+		</div>
+		<div class="field">
+			<label for="email">E-mail: </label>
+			<input name="email" id="email" ng-model="email" type="email" placeholder="E-mail" required>
+		</div>
+		<div class="field">
+			<label for="password">Пароль: </label>
+			<input name="password" id="password" ng-model="password" type="password" placeholder="Пароль" required>
+		</div>
+		<div class="field">
+			<label for="repeat">Повторите: </label>
+			<input name="repeat" id="repeat" ng-model="repeat"type="password" placeholder="Повторите пароль" required>
+		</div>
+		<div name="hierarchy" ng-include src="'hierarchyInput.html'">	
+		</div>
+		<div class="field">
+			<label for="register"><a href="javascript:void(0);" ng-click="changeView('login')">Уже зарегистрировался</a></label>
+			<input id="register" type="button" ng-click="registerUser()" ng-disabled="register.$invalid" value="Зарегистрироваться">
+		</div>
+	</form>
+</div>

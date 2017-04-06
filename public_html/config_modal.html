@@ -1,0 +1,30 @@
+﻿<div ng-controller="userCtrl">
+	<form name="newConfigForm">
+		<div class="field">
+			<label for="startHour">Начало:</label>
+			<div class="time">
+				<input type="number" min="0" max="23" id="startHour" ng-model="newConfig.lessonsStart.hour" required>
+				<input type="number" min="0" max="59" id="startMin" ng-model="newConfig.lessonsStart.minutes" required>
+			</div>
+		</div>
+		<div class="field">
+			<label for="lengthHour">Длина:</label>
+			<div class="time">
+				<input type="number" min="0" max="23" id="lengthHour" ng-model="newConfig.lessonLength.hour" required>
+				<input type="number" min="0" max="59" id="lengthMin" ng-model="newConfig.lessonLength.minutes" required>
+			</div>
+		</div>
+		<div class="field">
+			<label for="lessonCount">Количество:</label>
+			<input type="number" min="1" max="8" id="lessonCount" ng-model="newConfig.lessonCount" required>
+		</div>
+		<div ng-repeat="i in iterate(newConfig.lessonCount) track by $index" class="field" ng-show="$index != 0">
+			<label for="pause{{$index}}">Перерыв {{$index}}-{{$index+1}}</label>
+			<input type="number" id="pause{{$index}}" min="0" max="59" ng-model="newConfig.lessonPause[$index]">
+		</div>
+		<div class="field">
+			<label></label>
+			<input type="button" ng-click="saveConfig(newConfig)" ng-disabled="newConfigForm.$invalid" value="Сохранить">
+		</div>
+	</form>
+</div>

@@ -1,0 +1,62 @@
+﻿<div ng-controller="hierarchyCtrl as hCtrl">
+	<div class="field">				
+		<label for="university">Университет:</label>
+		<select id="university" name="university" ng-model="univerData.selected"
+		ng-disabled="university == null"
+		ng-change="getHierarchy(univerData.selected, 'faculty', null)"
+		ng-options="univ.ID as univ.Name for univ in university" 
+		required>
+		</select>
+	</div>
+	<div class="field" ng-if="univerData.selected == '_nf'">
+		<label for="new_university">Укажите университет:</label>
+		<input ng-model="univerData.newObj" type="text" id="new_university" name="new_university" required>
+		<input ng-disabled="univerData.newObj == null" type="button" value="Отправить" 
+		ng-click="addHierarchy(univerData.newObj, '', 'UNIVERSITY', selectNewUniversity)">	
+	</div>
+	<div class="field" ng-show="(univerData.selected != null)&&(univerData.selected != '_nf')">		
+		<label for="faculty">Факультет:</label>
+		<select id="faculty" name="faculty" ng-model="facData.selected" 
+		ng-disabled="faculty == null"
+		ng-change="getHierarchy(facData.selected, 'course', null)" 
+		ng-options="fac.ID as fac.Name for fac in faculty" 
+		required>
+		</select>
+	</div>
+	<div class="field" ng-if="facData.selected == '_nf'">
+		<label for="new_faculty">Укажите факультет:</label>
+		<input ng-model="facData.newObj" type="text" id="new_faculty" name="new_faculty" required>
+		<input ng-disabled="facData.newObj == null" type="button" value="Отправить" 
+		ng-click="addHierarchy(facData.newObj, univerData.selected, 'FACULTY', selectNewFaculty)">	
+	</div>
+	<div class="field" ng-show="(facData.selected != null)&&(facData.selected != '_nf')">		
+		<label for="course">Курс:</label>
+		<select id="course" name="course" ng-model="courseData.selected" 
+		ng-disabled="course == null"
+		ng-change="getHierarchy(courseData.selected, 'group', null)"  
+		ng-options="cour.ID as cour.Name for cour in course" 
+		required>			
+		</select>
+	</div>
+	<div class="field" ng-if="courseData.selected == '_nf'">
+		<label for="new_course">Укажите курс:</label>
+		<input ng-model="courseData.newObj" type="text" id="new_course" name="new_course" required>
+		<input ng-disabled="courseData.newObj == null" type="button" value="Отправить" 
+		ng-click="addHierarchy(courseData.newObj, facData.selected, 'COURSE', selectNewCourse)">	
+	</div>
+	<div class="field" ng-show="(courseData.selected != null)&&(courseData.selected != '_nf')">		
+		<label for="group">Группа:</label>
+		<select id="group" name="group" ng-model="groupData.selected"
+		ng-disabled="group == null"
+		ng-options="gr.ID as gr.Name for gr in group" 
+		required>
+		<input type="text" style="display:none;" required ng-model="blockValidation" ng-if="groupData.selected == '_nf'">
+		</select>
+	</div>
+	<div class="field" ng-if="groupData.selected == '_nf'">
+		<label for="new_group">Укажите группу:</label>
+		<input ng-model="groupData.newObj" type="text" id="new_group" name="new_group" required>
+		<input ng-disabled="groupData.newObj == null" type="button" value="Отправить" 
+		ng-click="addHierarchy(groupData.newObj, courseData.selected, 'GROUP', selectNewGroup)">	
+	</div>	
+</div>

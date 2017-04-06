@@ -1,0 +1,18 @@
+﻿<div ng-controller="userCtrl">
+	<form name="userSave" id="userSave">
+		<div class="field">
+			<label for="surname">Фамилия:</label>
+			<input type="text" id="surname" ng-model="newUser.Surname">
+		</div>
+		<div class="field">
+			<label for="name">Имя:</label>
+			<input type="text" id="name" ng-model="newUser.Name">
+		</div>
+		<div ng-include src="'hierarchyInput.html'">
+		</div>
+		<div class="field">
+			<label for=""></label>
+			<input type="submit" value="Сохранить" ng-disabled="userSave.$invalid" ng-click="saveUser(newUser)">
+		</div>
+	</form>
+</div>

@@ -1,0 +1,47 @@
+.userPart {
+	width:96%;
+	display:block;
+	height: 120px;
+	padding: 0% 2%;
+	padding-top: 20px;
+	clear:both;
+}
+.userPlate{
+	display:block;
+	width:24%;
+	min-width: 270px;
+	height:80px;
+	float:left;
+	clear:both;
+	color: #fff;
+	background:#3BCC47;
+	padding: 10px 10px;	
+	box-shadow: 5px 5px 25px 5px rgba(0,0,0,0.2);
+	color: #000;
+}
+
+.userPlate span {
+	line-height: 20px;
+}
+
+.userPlate .userName {
+	font-weight: 700;
+	font-size: 16px;
+}
+
+.userPlate input[type=button]{
+	border:none;
+	box-shadow: 0 0 10px 3px rgba(0,0,0,0.2);
+	background-color: #257F2C;
+	color: #fff;
+	height: 35px;
+	margin: 3px 5px;
+}
+
+.userPlate input[type=button]:first-child{
+	margin-left:0px;	
+}
+
+.userPlate input[type=button]:last-child{
+	margin-right:0px;	
+}

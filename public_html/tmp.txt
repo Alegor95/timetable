@@ -1,0 +1,27 @@
+
+				<div class="full"
+				ng-if="(lessonsCH==null)&&(lessonsZN==null)"
+				ng-class="{ hoverShow:lessonsBH==null, lecture:lessonsBH.LessonType == 'LECTURE', practice:lessonsBH.LessonType == 'PRACTICE'}">
+					<span ng-if="lessonsBH!=null">
+						{{lessonsBH.Title}} ({{lessonsBH.Room}})
+						<input type="button" ng-click="confirm('Вы уверены?')?removeLesson(lessonsBH.ID):void(0)" class="inline-button remove-button">
+						<input type="button" ng-click="showHometask($event, lessonsBH.ID)" class="inline-button hometask-button">
+					</span>
+					<span style="blockSpan"	ng-if="lessonsBH==null">
+						<a href="javascript:void(0);" ng-click="showAddingDialog(day.timestamp, getLessonTime($index, true), getLessonTime($index+1, false))" >Добавить пару</a>
+					</span>
+				</div>
+				<!--Числитель -->
+				<div class="half"
+				ng-class="{ hoverShow:lessonsCH==null, lecture:lessonsCH.LessonType == 'LECTURE', practice:lessonsCH.LessonType == 'PRACTICE'}">
+					<span class="blockSpan" ng-if="lessonsCH!=null">
+						{{lessonsCH.Title}} ({{lessonsCH.Room}})
+						<input type="button" ng-click="confirm('Вы уверены?')?removeLesson(lessonsCH.ID):void(0)" class="inline-button remove-button">
+						<input type="button" ng-click="showHometask($event, lessonsCH.ID)" class="inline-button hometask-button">
+					</span>
+					<span class="blockSpan"	ng-if="lessonsCH==null">
+						<a href="javascript:void(0);" ng-click="showAddingDialog(day.timestamp, getLessonTime($index, true), getLessonTime($index+1, false), 'CH')" >Добавить пару</a>
+					</span>
+				</div>
+				<!--Знаменатель -->
+				<div class="half" 

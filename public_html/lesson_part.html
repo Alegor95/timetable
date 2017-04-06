@@ -1,0 +1,46 @@
+﻿<div ng-controller="lessonCtrl" class="section">
+	<div class="row" ng-show="(lessons!=null)">
+		<div class="col s12 m2">
+			<div class="lesson-block header">
+				Время
+			</div>
+			<div class="lesson-block" ng-repeat="i in iterate(scheduleConfig.lessonCount) track by $index">
+				{{timeToString(getLessonTime($index, true))}}-{{timeToString(getLessonTime($index+1, false))}}
+			</div>
+		</div>
+		<div class="col s12 m2" ng-repeat="day in lessons|orderObjectBy:'order'">
+			<div class="lesson-block header">{{day.name}}</div>
+			<div class="lesson-block"
+			ng-value="lesson=getLessonByTime(day.lessons, getLessonTime($index, true));"
+			ng-repeat="i in iterate(scheduleConfig.lessonCount) track by $index">
+				ng-class="{ hoverShow:lessonsZN==null, lecture:lessonsZN.LessonType == 'LECTURE', practice:lessonsZN.LessonType == 'PRACTICE'}">
+					<span ng-if="lessonsZN!=null">
+						{{lessonsZN.Title}} ({{lessonsZN.Room}})
+						<input type="button" ng-click="confirm('Вы уверены?')?removeLesson(lessonsZN.ID):void(0)" class="inline-button remove-button">
+						<input type="button" ng-click="showHometask($event, lessonsZN.ID)" class="inline-button hometask-button">
+					</span>
+					<span class="blockSpan"	ng-if="lessonsZN==null">
+						<a href="javascript:void(0);" ng-click="showAddingDialog(day.timestamp, getLessonTime($index, true), getLessonTime($index+1, false), 'ZN')" >Добавить пару</a>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="hometask-cover" ng-if="hometaskList.display" ng-click="hometaskList.display = false">
+	</div>
+	<div class="hometask-list" ng-style="{left:hometaskList.left, top:hometaskList.top}" ng-show="hometaskList.display">
+		<div class="arrow-up" style="position:relative; top:-8px;"></div>
+		<div class="item" ng-repeat="task in hometaskList.list">
+			<input type="button" class="inline-button remove-button" ng-click="confirm('Вы уверены?')?removeHometask(task.ID):void(0)">
+			<span class="task-title">{{task.Name}}</span>
+			<span class="task-date">{{task.CompletionDate|date:'dd.MM.yyyy'}}</span>
+		</div>
+		<div class="item">
+			<input type="button" class="inline-button add-button" ng-disabled="newTaskForm.$invalid" ng-click="addHometask(newTask)">
+			<form name="newTaskForm" style="margin:0">
+				<input class="task-title" type="text" id="newTask.title" ng-model="newTask.title" required>
+				<input class="task-date" type="date" id="newTask.compDate" ng-model="newTask.compDate" required>
+			</form>
+		</ div>
+	</div>
+</div>

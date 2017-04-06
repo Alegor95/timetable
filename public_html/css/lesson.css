@@ -1,0 +1,118 @@
+div {
+	margin: 0px;
+	padding:0px;
+}
+.timetable{
+	width:96%;
+	padding-left:2%;
+	padding-right:2%;
+}
+.lesson-block{	
+	height:50px;
+	width: 100%;
+	line-height:50px;
+	overflow:hidden;
+	text-align:center;
+	box-shadow:inset 0px 0px 0px 1px #000;
+	border-collapse: collapse;
+}
+.lesson-block .full{
+	width:100%; height:50px;
+	display:block;
+	overflow:hidden;
+	line-height: 50px;
+	box-shadow:inset 0px 0px 0px 1px #000;
+}
+.lesson-block .half{
+	display:block; 
+	overflow:hidden;
+	line-height:25px;
+	width:100%; 
+	height:25px;
+	box-shadow:inset 0px 0px 0px 1px #000;
+}
+.lesson-block .half .inline-button{
+	position:relative;
+	top:5px;
+}
+.lesson-block .half:first-child{
+	border-bottom:1% black solid;
+}
+.lesson-block .practice {
+	background-color:#ff7;
+}
+.lesson-block .lecture {
+	background-color:#7f7;
+}
+
+.lesson-day{
+	position:relative;
+	width:12.4%;
+	display:inline-block;
+	overflow:hidden;
+}
+.lesson-day .header{
+	background-color:#257F2C;
+	color:#fff;
+}
+.lesson-block .full .inline-button{	
+	top:17px;
+}
+.hometask-list{
+	background:#3BCC47;
+	color:#fff;
+	width: 300px;
+	position:absolute;
+	z-index: 50;
+	box-shadow:inset 0px 0px 0px 1px #257F2C;
+	margin-top:16px;
+	margin-left:-8px;
+}
+.hometask-list .item{
+	height:20px;
+	line-height:20px;
+	border-bottom: 1px #FFF dotted;
+	margin: 2px 3px;
+	border-collapse: collapse;
+}
+.hometask-list .item:last-of-type{
+	border:none;
+}
+.hometask-list .item .task-title{
+	float:left;
+	display:inline-block;
+	width:45%;
+}
+.hometask-list .item input {
+	height: 18px;
+}
+.hometask-list .item .task-date{
+	float:right;
+	display:inline-block;
+	width:45%;
+	text-align: right;
+}
+.hometask-cover{
+	position: fixed;
+	width:100%;
+	height:100%;
+	top:0px;
+	left:0px;
+	opacity:0.01;
+	z-index:49;
+}
+.fastConfig{
+	position: absolute;
+	display:block;	
+	top:95px;
+	left:2%;
+	height:40px;
+	width:160px;
+	padding: 3px 5px;
+	background: #3BCC47;
+	color: white;
+	border:#257F2C 3px solid;
+}
+.fastConfig select{
+	width:150px;
+}

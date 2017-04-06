@@ -1,0 +1,22 @@
+﻿<div ng-controller="userCtrl">
+	<form name="login" id="login" ng-show="loggedUser == null" class="section">		
+		<div class="row">
+			<label for="email">E-mail</label>
+			<input type="email" name="email" id="email" ng-model="email" required>		
+		</div>
+		<div class="row">
+			<label for="password">Пароль:</label>
+			<input type="password" name="password" id="password" ng-model="password" required>
+		</div>
+		<div class="row">
+			<label><a href="javascript:void(0)"  ng-click="changeView('register')" >Зарегистрироваться</a></label>
+			<a href="javascript:void(0)" type="button"
+                            class="btn-large waves-effect waves-light orange"
+                            ng-click="loginUser()" ng-disabled="login.$invalid">Войти</a>
+		</div>
+	</form>
+	<div ng-show="loggedUser!=null"  class="section">
+		<div ng-include src="'lesson_part.html'">
+		</div>
+	</div>
+</div>

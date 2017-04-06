@@ -1,0 +1,71 @@
+﻿<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Расписание Онлайн</title>
+		<!-- Libraries-->
+		<script src="lib/angular.js"></script>
+		<script src="lib/angular-cookies.js"></script>
+		<script src="lib/angular-animate.js"></script>
+		<script src="angular/md5.js"></script>
+		<script src="angular/postConverter.js"></script>
+		<!-- Styles -->
+		<!-- <link rel="stylesheet" type="text/css" href="css/main.css">		
+		<link rel="stylesheet" type="text/css" href="css/lesson.css">
+		<link rel="stylesheet" type="text/css" href="css/user.css">
+		<link rel="stylesheet" type="text/css" href="css/print.css"> -->
+		<!-- Angular controllers -->
+		<script src="angular/index.js"></script>
+		<script src="angular/hierarchy.js"></script>
+		<script src="angular/login.js"></script>
+		<script src="angular/lesson.js"></script>
+		<!--Import Google Icon Font-->
+                <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+                <!--Import materialize.css-->
+                <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+                <!--Let browser know website is optimized for mobile-->
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	</head>
+	<body  ng-app="myApp" ng-controller="mainCtrl">
+                <style>
+                    footer.page-footer {
+                        position:absolute;
+                        top: calc(100% - 20px);
+                        width:100%;
+                        transform: translateY(-100%);
+                        box-sizing: padding-box;
+                    }
+                </style>
+		<nav class="light-blue lighten-1" role="navigation">
+                    <div class="nav-wrapper container">
+                        <a id="logo-container" href="#" class="brand-logo">Расписание онлайн</a>
+                        
+                        <ul ng-controller="userCtrl" ng-if="loggedUser" class="right">
+                            <li>{{loggedUser.Surname}} {{loggedUser.Name}}</li>
+                            <li><a href="javascript:void(0)" ng-click="showProfile()">Профиль</a></li>
+                            <li><a href="javascript:void(0)" ng-click="showConfigModal()">Настройки</a></li>
+                            <li><a href="javascript:void(0)" ng-click="logout()">Выйти</a></li>
+                        </ul>
+                    </div>
+                </nav>
+		<div name="mainContainer" class="container" ng-include src="currentView.url">	
+		</div>
+		<div id="modal" ng-show="currentModal != null" class="modal">
+			<div class="modal-content"  ng-include src="currentModal.url">
+			</div>
+                        <div class="modal-footer">
+                            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+                        </div>
+		</div>
+		<footer class="page-footer light-blue">
+                    <div class="footer-copyright">
+                        <div class="container">
+                        Сделано Горовым Александром (c) 2015
+                        </div>
+                    </div>
+                </footer>                
+                
+                <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+                <script type="text/javascript" src="angular/materialize.min.js"></script>
+	</body>
+</html>
