@@ -21,6 +21,9 @@ window.app.config(function($routeProvider, $httpProvider) {
     })
     .when("/login", {
       templateUrl: '../templates/login.html'
+    })
+    .when("/register", {
+      templateUrl: '../templates/register.html'
     });
   $httpProvider.interceptors.push('httpRequestInterceptor');
 });
