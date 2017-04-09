@@ -1,12 +1,18 @@
-<form ng-controller="loginController">
-  <div class="form-group">
-    <label for="email">Email:</label>
-    <input type="email" class="form-control" ng-model="email" id="email">
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+    <form ng-controller="loginController">
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" ng-model="email" id="email">
+      </div>
+      <div class="form-group">
+        <label for="pwd">Пароль:</label>
+        <input type="password" class="form-control" ng-model="password" id="pwd">
+      </div>
+      <button type="submit" class="btn btn-success" ng-click="userLogin()">Вход</button>
+      <a type="submit" class="btn btn-link" href="#register">Регистрация</a>
+    </form>
   </div>
-  <div class="form-group">
-    <label for="pwd">Пароль:</label>
-    <input type="password" class="form-control" ng-model="password" id="pwd">
-  </div>
-  <button type="submit" class="btn btn-success" ng-click="userLogin()">Вход</button>
-  <a type="submit" class="btn btn-link" href="#register">Регистрация</a>
-</form>
+  <div class="col-sm-4"></div>
+</div>
