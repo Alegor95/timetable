@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Расписание online</title>
+    <title>Расписание</title>
     <!-- META -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,15 +13,32 @@
     <script src="lib/bootstrap.min.js"></script>
     <script src="lib/md5.js"></script>
     <!-- CSS -->
-    <link type="stylesheet" rel="css/bootstrap.min.css"/>
-    <link type="stylesheet" rel="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
     <!-- ANGULAR -->
     <script src="angular/main.js"></script>
-    <script src="angular/main.controller.js"></script>
+    <script src="angular/root.controller.js"></script>
+    <script src="angular/users.service.js"></script>
+    <script src="angular/postconverter.service.js"></script>
+    <script src="angular/login.controller.js"></script>
   </head>
-  <body ng-app="app">
-    <div class="nav-bar">
-    </div>
+  <body ng-app="app" ng-controller='rootController'>
+    <nav class="navbar navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#/">Расписание</a>
+        </div>
+        <div class="navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li ng-if="!authorized"><a href="#login">Вход</a></li>
+            <li ng-if="authorized"><a href="#settings">Настройки</a></li>
+            <li ng-if="authorized">
+              <a href="javascript:void(0)" ng-click="logout()">Выход</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
     <div ng-view></div>
 

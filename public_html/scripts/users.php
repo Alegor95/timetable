@@ -29,7 +29,7 @@
 						}
 					} else {
 						header('HTTP/1.1 404 Not found');
-						echo json_encode(array("error"=>"User not found"));
+						echo json_encode(array("error"=>"User ".$email."/".$pass." not found"));
 					}
 				} break;
 				case 'register':{
