@@ -1,19 +1,25 @@
 <form>
   <div class="form-group">
     <label for="surname">Фамилия:</label>
-    <input type="surname" class="form-control" ng-model="user.surname" id="surname">
+    <input type="surname" class="form-control" ng-model="user.Surname" id="surname">
   </div>
   <div class="form-group">
     <label for="name">Имя:</label>
-    <input type="name" class="form-control" ng-model="user.name" id="name">
+    <input type="name" class="form-control" ng-model="user.Name" id="name">
   </div>
   <div class="form-group">
     <label for="email">Email:</label>
-    <input type="email" class="form-control" ng-model="user.email" id="email">
+    <input type="email" class="form-control" ng-model="user.Email" id="email">
   </div>
   <div class="form-group">
     <label for="pwd">Пароль:</label>
-    <input type="password" class="form-control" ng-model="user.password" id="pwd">
+    <input type="password" class="form-control" ng-model="user.Password" id="pwd">
   </div>
-  <button type="submit" class="btn btn-success" ng-click="action(user)">Сохранить</button>
+  <hierarchy ng-repeat="type in hierarchyOrder"
+    ng-if="isVisible(type, hierarchies)"
+    hierarchy-id="hierarchies[type]"
+    hierarchy-type-id="type"
+    parent-id="hierarchyOrder[$index-1]?hierarchies[hierarchyOrder[$index-1]]:null"/>
+  <button type="submit" class="btn btn-success"
+    ng-if="action" ng-click="action(user)">Сохранить</button>
 </form>

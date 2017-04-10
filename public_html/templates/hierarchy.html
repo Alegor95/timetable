@@ -1,0 +1,26 @@
+<div>
+  <div class="form-group">
+    <label for="hierarchy-{{hierarchyTypeId}}">
+      {{types[hierarchyTypeId]}}
+    </label>
+    <select class="form-control" id="hierarchy-{{hierarchyTypeId}}"
+        ng-model="hierarchyId">
+      <option  ng-repeat="opts in options"
+        value="{{opts.ID}}" ng-selected="opts.ID == hierarchyId">
+        {{opts.Name}}
+      </option>
+      <option value="-1">Нет в списке</option>
+    </select>
+  </div>
+  <div class="form-group" ng-show="hierarchyId == -1">
+    <label for="hierarchy-{{hierarchyTypeId}}-name">Введите название:</label>
+    <input class="form-control" id="hierarchy-{{hierarchyTypeId}}-name"
+      ng-model="newName" />
+  </div>
+  <div class="form-group" ng-show="hierarchyId == -1">
+    <button ng-click="addNew()"
+      class="btn btn-success">
+      Добавить
+    </button>
+  </div>
+</div>
