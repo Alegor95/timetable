@@ -55,7 +55,7 @@
     return mysqli_close($link);
   }
 
-  function insert_id() {
-    return mysqli_insert_id();
+  function insert_id($link) {
+    return mysqli_insert_id($link);
   }
 ?>

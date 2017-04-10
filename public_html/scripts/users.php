@@ -46,7 +46,7 @@
 						echo json_encode(array("error"=>$error));
 						die();
 					}
-					$id = insert_id();
+					$id = insert_id($link);
 					close($link);
 					header('HTTP/1.1 201 Created');
 					echo json_encode(array('result' => 'ok', 'id' => $id));
