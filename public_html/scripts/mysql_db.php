@@ -58,4 +58,8 @@
   function insert_id($link) {
     return mysql_insert_id($link);
   }
+
+  function errno($link) {
+    return mysql_errno();
+  }
 ?>

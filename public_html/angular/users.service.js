@@ -6,11 +6,29 @@
       var passwordCookie = 'pass_cookie';
 
       var API_URLS = {
-        'login': 'scripts/users.php/login'
+        'login': 'scripts/users.php/login',
+        'register': 'scripts/users.php/register'
       };
       var loggedUser = null;
 
       var usersServiceInstance = {
+        register: function(name, surname, email, password, parentId, callback) {
+          $http({
+            method: 'POST',
+            url: API_URLS['register'],
+            data: postConverter({
+              surname: surname,
+              name: name,
+              email: email,
+              password: md5(password),
+              parentId: parentId,
+            })
+          }).then(function() {
+            callback();
+          }, function(response) {
+            throw new Error(response.data.error);
+          })
+        },
         login: function(login, password, callback) {
           $http({
               method: 'POST',

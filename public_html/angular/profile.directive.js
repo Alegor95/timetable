@@ -71,7 +71,7 @@
 
         scope.save = function() {
           scope.validate(scope.user, scope.hierarchies);
-          scope.user.HierarchyId = hierarchies[hierarchyOrder[hierarchyOrder.length - 1]];
+          scope.user.HierarchyId = scope.hierarchies[hierarchyOrder[hierarchyOrder.length - 1]];
           scope.action(scope.user);
         }
       }

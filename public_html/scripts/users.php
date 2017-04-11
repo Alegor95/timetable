@@ -38,11 +38,12 @@
 					$email=real_escape_string($link, $_POST["email"]);
 					$hash=real_escape_string($link, $_POST["password"]);
 					$parentId=real_escape_string($link, $_POST["parentId"]);
+					//
 					$query="INSERT INTO Users(Surname, Name, Email, PasswordHash, HierarchyId) VALUES('$surname', '$name', '$email', '$hash', '$parentId')";
 					$res = query($query, $link);
 					if (!$res){
 						header('HTTP/1.1 500 Internal Server Error');
-						$error = errno()==1062?"E-mail уже занят.":mb_convert_encoding(error(), 'utf-8', 'windows-1251');
+						$error = errno($link)==1062?"E-mail уже занят.":mb_convert_encoding(error(), 'utf-8', 'windows-1251');
 						echo json_encode(array("error"=>$error));
 						die();
 					}
