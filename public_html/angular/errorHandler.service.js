@@ -20,7 +20,7 @@
             id: idSeq++,
             exception: exception.message
           };
-          $log.warn(error);
+          $log.warn(exception);
           $rootScope.errors.push(error);
           $timeout(function() {
             $rootScope.errors.splice($rootScope.errors.indexOf(error), 1);
