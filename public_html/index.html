@@ -55,7 +55,7 @@
       <div class="alert alert-danger" role="alert" style="display: none"
           ng-style="{'display': !error ? 'none' : 'block'}"
           ng-repeat="error in errors">
-        <strong>Ошибка {{error.id}}</strong> {{error.exception}}
+        <strong>Ошибка {{error.id}}</strong> <pre>{{error.exception}}</pre>
       </div>
     </div>
   </body>
