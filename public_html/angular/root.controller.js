@@ -1,7 +1,13 @@
 (function(app) {
   app.controller('rootController', function($scope, usersService, $location) {
+      var restoreUrl = null;
+
       usersService.getLogged(function(user){
         $scope.authorized = user;
+        if (restoreUrl) {
+          $location.url(restoreUrl);
+          restoreUrl = null;
+        }
       });
 
       $scope.logout = function() {
@@ -20,6 +26,7 @@
         if (!$scope.authorized
             && next.indexOf('login') < 0
             && next.indexOf('register') < 0) {
+          restoreUrl = $location.url();
           $location.url('login');
         }
       });
