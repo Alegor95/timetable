@@ -33,6 +33,7 @@
 
         scope.isVisible = function(type, hierarchies) {
           var index;
+          if (!type || !hierarchies) return false;
           for (var i in hierarchyOrder) {
             if (hierarchyOrder[i] == type) return true;
             if (!index && hierarchies[hierarchyOrder[i]] <= 0)  return false;
