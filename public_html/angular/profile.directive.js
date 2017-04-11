@@ -40,6 +40,40 @@
           }
           return true;
         }
+
+        scope.validate = function(user, hierarchies) {
+          var errors = [];
+          var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          if (!user.Name) {
+            errors.push("Введите ваше имя");
+          }
+          if (!user.Surname) {
+            errors.push("Введите вашу фамилию");
+          }
+          if (!user.Email) {
+            errors.push("Введите email");
+          } else if (!re.test(user.Email)) {
+            errors.push("Введите корректный email");
+          }
+          if (!user.Password) {
+            errors.push("Введите пароль");
+          } else if (user.Password != user.repeatPassword) {
+            errors.push("Введенные пароли должны совпадать");
+          }
+          if (!hierarchies
+              || hierarchies[hierarchyOrder[hierarchyOrder.length - 1]] <= 0) {
+            errors.push("Введите вашу группу");
+          }
+          if (errors.length) {
+            throw new Error("Ошибки валидации:\n" + errors.join('\n'));
+          }
+        }
+
+        scope.save = function() {
+          scope.validate(scope.user, scope.hierarchies);
+          scope.user.HierarchyId = hierarchies[hierarchyOrder[hierarchyOrder.length - 1]];
+          scope.action(scope.user);
+        }
       }
     };
   });

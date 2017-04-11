@@ -22,7 +22,7 @@
   <div class="form-group">
     <label for="repeat">Повторите пароль:</label>
     <input type="password" class="form-control" name="repeat" required
-      ng-model="user.Password" id="repeat">
+      ng-model="user.repeatPassword" id="repeat">
   </div>
   <hierarchy ng-repeat="type in hierarchyOrder"
     ng-if="isVisible(type, hierarchies)"
@@ -30,5 +30,5 @@
     hierarchy-type-id="type"
     parent-id="hierarchyOrder[$index-1]?hierarchies[hierarchyOrder[$index-1]]:null"/>
   <button type="submit" class="btn btn-success"
-    ng-if="action" ng-click="action(user)">Сохранить</button>
+    ng-if="action" ng-click="save()">Сохранить</button>
 </form>
