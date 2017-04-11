@@ -3,7 +3,7 @@
      $provide.decorator('$exceptionHandler', function($delegate, $injector) {
 
         var idSeq = 0;
-        var errorShowTO = 1000;
+        var errorShowTO = 3000;
 
         return function myExceptionHandler(exception, cause) {
 
@@ -23,8 +23,7 @@
           $log.warn(error);
           $rootScope.errors.push(error);
           $timeout(function() {
-            console.log($rootScope.errors.indexOf(error));
-            $rootScope.errors.slice($rootScope.errors.indexOf(error), 1);
+            $rootScope.errors.splice($rootScope.errors.indexOf(error), 1);
           }, errorShowTO);
         };
       });
