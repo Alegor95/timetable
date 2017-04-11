@@ -1,19 +1,28 @@
-<form>
+<form name="profileForm">
   <div class="form-group">
     <label for="surname">Фамилия:</label>
-    <input type="surname" class="form-control" ng-model="user.Surname" id="surname">
+    <input type="surname" class="form-control" name="surname" required
+      ng-model="user.Surname" id="surname">
   </div>
   <div class="form-group">
     <label for="name">Имя:</label>
-    <input type="name" class="form-control" ng-model="user.Name" id="name">
+    <input type="name" class="form-control" name="name" required
+      ng-model="user.Name" id="name">
   </div>
   <div class="form-group">
     <label for="email">Email:</label>
-    <input type="email" class="form-control" ng-model="user.Email" id="email">
+    <input type="email" class="form-control" name="email" required
+      ng-model="user.Email" id="email">
   </div>
   <div class="form-group">
     <label for="pwd">Пароль:</label>
-    <input type="password" class="form-control" ng-model="user.Password" id="pwd">
+    <input type="password" class="form-control" name="pwd" required
+      ng-model="user.Password" id="pwd">
+  </div>
+  <div class="form-group">
+    <label for="repeat">Повторите пароль:</label>
+    <input type="password" class="form-control" name="repeat" required
+      ng-model="user.Password" id="repeat">
   </div>
   <hierarchy ng-repeat="type in hierarchyOrder"
     ng-if="isVisible(type, hierarchies)"
