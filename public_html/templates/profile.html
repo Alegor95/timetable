@@ -9,17 +9,17 @@
     <input type="name" class="form-control" name="name" required
       ng-model="user.Name" id="name">
   </div>
-  <div class="form-group">
+  <div class="form-group" ng-show="showLoginInfo">
     <label for="email">Email:</label>
     <input type="email" class="form-control" name="email" required
       ng-model="user.Email" id="email">
   </div>
-  <div class="form-group">
+  <div class="form-group" ng-show="showLoginInfo">
     <label for="pwd">Пароль:</label>
     <input type="password" class="form-control" name="pwd" required
       ng-model="user.Password" id="pwd">
   </div>
-  <div class="form-group">
+  <div class="form-group" ng-show="showLoginInfo">
     <label for="repeat">Повторите пароль:</label>
     <input type="password" class="form-control" name="repeat" required
       ng-model="user.repeatPassword" id="repeat">
@@ -29,6 +29,6 @@
     hierarchy-id="hierarchies[type]"
     hierarchy-type-id="type"
     parent-id="hierarchyOrder[$index-1]?hierarchies[hierarchyOrder[$index-1]]:null"/>
-  <button type="submit" class="btn btn-success"
+  <button type="submit" class="form-control btn btn-success"
     ng-if="action" ng-click="save()">Сохранить</button>
 </form>

@@ -13,7 +13,8 @@
       requires: '^^hierarchy',
       scope: {
         action: '=action',
-        user: '=user'
+        user: '=user',
+        showLoginInfo: '=showLoginInfo'
       },
       templateUrl: '../templates/profile.html',
       link: function(scope) {
@@ -41,7 +42,7 @@
           return true;
         }
 
-        scope.validate = function(user, hierarchies) {
+        scope.validate = function(user, hierarchies, showLoginInfo) {
           var errors = [];
           var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
           if (!user.Name) {
@@ -50,11 +51,13 @@
           if (!user.Surname) {
             errors.push("Введите вашу фамилию");
           }
+          if (showLoginInfo)
           if (!user.Email) {
             errors.push("Введите email");
           } else if (!re.test(user.Email)) {
             errors.push("Введите корректный email");
           }
+          if (showLoginInfo)
           if (!user.Password) {
             errors.push("Введите пароль");
           } else if (user.Password != user.repeatPassword) {
@@ -70,7 +73,7 @@
         }
 
         scope.save = function() {
-          scope.validate(scope.user, scope.hierarchies);
+          scope.validate(scope.user, scope.hierarchies, scope.showLoginInfo);
           scope.user.HierarchyId = scope.hierarchies[hierarchyOrder[hierarchyOrder.length - 1]];
           scope.action(scope.user);
         }

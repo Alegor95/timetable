@@ -7,7 +7,8 @@
 
       var API_URLS = {
         'login': 'scripts/users.php/login',
-        'register': 'scripts/users.php/register'
+        'register': 'scripts/users.php/register',
+        'update': 'scripts/users.php/update'
       };
       var loggedUser = null;
 
@@ -29,6 +30,23 @@
             throw new Error(response.data.error);
           })
         },
+        update: function(name, surname, email, password, parentId, callback) {
+          $http({
+            method: 'POST',
+            url: API_URLS['update'],
+            data:  postConverter({
+              surname: surname,
+              name: name,
+              email: email,
+              hash: md5(password),
+              parentId: parentId,
+            })
+          }).then(function() {
+            callback();
+          }, function(response) {
+            throw new Error(response.data.error);
+          });
+        },
         login: function(login, password, callback) {
           $http({
               method: 'POST',
@@ -38,6 +56,7 @@
               var user = resp.data;
               $cookieStore.put(loginCookie, login);
               $cookieStore.put(passwordCookie, password);
+              user.Password = password;
               callback(user);
           }, function(response){
               throw new Error(response.data.error);
