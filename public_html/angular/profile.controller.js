@@ -8,7 +8,8 @@
           user.Name, user.Surname,
           $scope.authorized.Email, $scope.authorized.Password,
           user.HierarchyId, function() {
-            $scope.authorized = angular.copy($scope.currentUser);
+            //$scope.currentUser.HierarchyId = user.HierarchyId;
+            angular.copy($scope.currentUser, $scope.authorized);
           }
         );
       }
