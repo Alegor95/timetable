@@ -27,6 +27,9 @@ window.app.config(function($routeProvider, $httpProvider) {
     })
     .when("/profile", {
       templateUrl: '../templates/user.html'
+    })
+    .when("/settings", {
+      templateUrl: '../templates/settings.html'
     });
   $httpProvider.interceptors.push('httpRequestInterceptor');
 });

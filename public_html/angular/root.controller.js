@@ -13,6 +13,7 @@
       $scope.logout = function() {
         $scope.authorized = null;
         usersService.logout();
+        $location.url("/");
       };
 
       $scope.login = function(login, password, callback) {

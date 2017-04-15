@@ -1,0 +1,26 @@
+<div class="row" ng-controller="settingsController">
+  <form>
+    <div class="form-group">
+      <label for="lessons-count">Количество занятий:</label>
+      <input class="form-control" id="lessons-count"
+        type="number" min=0 ng-model="lessonsCount" />
+    </div>
+    <div  ng-repeat='lessonTime in lessonsTime'>
+      <div class="form-group">
+        <strong>Занятие {{$index+1}}</strong>
+      </div>
+      <div class="form-group">
+          <label for="lesson-{{$index}}-start">Начало</label>
+          <time id="lesson-{{$index}}-start" time="lessonTime.start"/>
+      </div>
+      <div class="form-group">
+          <label for="lesson-{{$index}}-finish">Завершение</label>
+          <time id="lesson-{{$index}}-finish" time="lessonTime.finish"/>
+      </div>
+    </div>
+    <button type="submit" class="form-control btn btn-success"
+      ng-click="save(lessonsTime)">
+      Сохранить
+    </button>
+  </form>
+</div>
