@@ -1,0 +1,55 @@
+<div class="row" ng-controller="lessonAddController">
+  <h1>Добавление занятия</h1>
+  <form>
+    <div class="form-group">
+      <label for="subject">Предмет:</label>
+      <select ng-model="subject" id="subject"
+          name="subject" class="form-control">
+        <option ng-repeat="subj in subjects" value="{{subj.ID}}"
+            ng-selected="subject == subj.ID">
+          {{subj.Title}}
+        </option>
+        <option value="-1">Нет в списке</option>
+      </select>
+    </div>
+    <div class="form-group" ng-show="subject<0">
+      <label for="new-subject">Введите название:</label>
+      <input type="text" id="new-subject" class="form-control"
+        ng-model="newSubject"/>
+      <button class="btn btn-success" ng-click="addSubject()">Добавить</button>
+    </div>
+    <div class="form-group">
+      <label for="room">Аудитория</label>
+      <input type="text" id="room" ng-model="room" class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label for="lesson-type">Тип занятия:</label>
+      <select ng-model="lessonType" id="lesson-type" class="form-control">
+        <option ng-repeat="type in lessonTypes" value="{{type.ID}}">
+          {{type.Title}}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="lesson-repeat">Повторение:</label>
+      <select ng-model="lessonRepeat" id="lesson-repeat" class="form-control">
+        <option ng-repeat="repeat in lessonRepeats" value="{{repeat.ID}}">
+          {{repeat.Title}}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="lesson-start">Начало занятия:</label>
+      <time id="lesson-start" time="start" />
+    </div>
+    <div class="form-group">
+      <label for="lesson-finish">Конец занятия:</label>
+      <time id="lesson-finish" time="finish" />
+    </div>
+    <div class="form-group">
+      <button class="btn btn-success form-control" ng-click="save()">
+        Сохранить
+      </button>
+    </div>
+  </form>
+</div>

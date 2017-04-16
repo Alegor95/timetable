@@ -1,0 +1,17 @@
+<div class="list-group">
+  <div class="list-group-item active">{{day.name}}</div>
+  <div class="list-group-item" ng-repeat="lessonTime in time">
+    <strong>
+      {{lessonTime.start*1000|date:'HH:mm':'UTC'}}
+      -
+      {{lessonTime.finish*1000|date:'HH:mm':'UTC'}}
+    </strong>
+    <span ng-if="getLesson(lessonTime, lessons)">
+      {{getLesson(lessonTime, lessons).Title}} ({{getLesson(lessonTime, lessons).Room}})
+    </span>
+    <a ng-if="!getLesson(lessonTime, lessons)" class="btn btn-link"
+        href="#/lesson/{{day.start}}/{{$index}}/add">
+      Добавить
+    </a>
+  </div>
+</div>

@@ -12,7 +12,7 @@
 			switch ($id){
 				case 'hierarchy':{
 					$hId= $request[1];
-					$query = 'SELECT subj.Title, les.ID, les.Room, UNIX_TIMESTAMP(les.PeriodStart) as PeriodStart, UNIX_TIMESTAMP(les.PeriodEnd) as PeriodEnd, les.LessonTypeId as LessonType, les.RepeatTime FROM Lesson les, Subjects subj WHERE subj.ID = les.SubjectId AND les.RemovedAt is NULL';
+					$query = "SELECT subj.Title, les.ID, les.Room, UNIX_TIMESTAMP(CONVERT_TZ(les.PeriodStart, '+00:00', @@global.time_zone)) as PeriodStart, UNIX_TIMESTAMP(CONVERT_TZ(les.PeriodEnd, '+00:00', @@global.time_zone)) as PeriodEnd, les.LessonTypeId as LessonType, les.RepeatTime FROM Lesson les, Subjects subj WHERE subj.ID = les.SubjectId AND les.RemovedAt is NULL";
 
 					if ($hId){
 						$query = $query." AND les.HierarchyId='$hId'";
@@ -48,7 +48,27 @@
 						}
 					}
 					echo ']';
-				}break;
+				} break;
+				case 'typeDict': {
+					$query = "SELECT * FROM LessonType";
+					$res = query($query, $link);
+					if (!$res){
+						header('HTTP/1.1 500 Internal Server Error');
+						$error = mb_convert_encoding(db_error($link), 'utf-8', 'windows-1251');
+						echo json_encode(array("error"=>$error));
+						die();
+					}
+					$rowNum = num_rows($res); $nowRow = 0;
+					header('HTTP/1.1 200 OK');
+					echo '[';
+					while ($row = fetch_assoc($res)){
+						echo json_encode($row);
+						if (++$nowRow!=$rowNum){
+							echo ',';
+						}
+					}
+					echo ']';
+				} break;
 				default: {
 					header("HTTP/1.1 404 Not found");
 					echo json_encode(array("error" => "Страница не найдена"));
@@ -71,7 +91,7 @@
 				$res = query($query, $link);
 				if (!$res){
 					header('HTTP/1.1 500 Internal Server Error');
-					$error = mb_convert_encoding(error(), 'utf-8', 'windows-1251');
+					$error = mb_convert_encoding(db_error($link), 'utf-8', 'windows-1251');
 					echo json_encode(array("error"=>$error));
 					die();
 				}

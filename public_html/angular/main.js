@@ -30,6 +30,9 @@ window.app.config(function($routeProvider, $httpProvider) {
     })
     .when("/settings", {
       templateUrl: '../templates/settings.html'
+    })
+    .when("/lesson/:day/:timeIdx/add", {
+      templateUrl: '../templates/lessonadd.html'
     });
   $httpProvider.interceptors.push('httpRequestInterceptor');
 });

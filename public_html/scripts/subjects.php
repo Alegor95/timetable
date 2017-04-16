@@ -25,10 +25,10 @@
 		case 'POST':{
 			$title=real_escape_string($link, $_POST["title"]);
 			$query = "INSERT Subjects(Title, Description) VALUES ('$title', '$title')";
-			$res = query($query);
+			$res = query($query, $link);
 			if (!$res){
 				header('HTTP/1.1 500 Internal Server Error');
-				$error = mb_convert_encoding(error(), 'utf-8', 'windows-1251');
+				$error = mb_convert_encoding(db_error($link), 'utf-8', 'windows-1251');
 				echo json_encode(array("error"=>$error));
 				die();
 			}

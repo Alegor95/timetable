@@ -4,7 +4,7 @@
 
     var instance = {
       get: function(user, callback) {
-          callback(JSON.parse($cookieStore.get(COOKIE_KEY + user.ID))||[]);
+          callback(JSON.parse($cookieStore.get(COOKIE_KEY + user.ID) || "[]"));
       },
       save: function(user, newTime) {
         $cookieStore.put(COOKIE_KEY + user.ID, JSON.stringify(newTime))
