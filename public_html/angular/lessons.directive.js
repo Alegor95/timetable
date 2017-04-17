@@ -1,5 +1,5 @@
 (function (app) {
-  app.directive('lessons', function() {
+  app.directive('lessons', function(lessonsService) {
     var weekdays = [
       { name: "Понедельник", start: 0},
       { name: "Вторник", start: 86400},
@@ -17,6 +17,13 @@
         time: '=time'
       },
       link: function(scope) {
+
+        lessonsService.getLessonsRepeat(function(repeats) {
+          var universal = lessonsService.getUniversalRepeat();
+          scope.repeats = repeats.filter(_l => _l.ID != universal);
+          scope.repeat = scope.repeats[0].ID;
+        });
+
         scope.weekdays = weekdays;
       }
     };

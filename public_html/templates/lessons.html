@@ -1,5 +1,14 @@
 <div>
+  <div class="form-group">
+    <label for="repeat">Повторение:</label>
+    <select ng-model="repeat" id="repeat" class="form-control">
+      <option ng-selected="repeat == {{repeatTime.ID}}"
+          value="{{repeatTime.ID}}" ng-repeat="repeatTime in repeats">
+        {{repeatTime.Title}}
+      </option>
+    </select>
+  </div>
   <div class="col-sm-4 col-xs-12" ng-repeat="day in weekdays">
-    <weekday day="day" lessons="lessons" time="time"/>
+    <weekday day="day" lessons="lessons" time="time" repeat="repeat"/>
   </div>
 </div>

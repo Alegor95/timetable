@@ -28,6 +28,9 @@
           throw new Error(response.data.error);
         });
       },
+      getUniversalRepeat: function() {
+        return "BH";
+      },
       getLessonsType: function(callback) {
         $http({
           method: 'GET',
