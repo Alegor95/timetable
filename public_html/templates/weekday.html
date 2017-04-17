@@ -6,7 +6,7 @@
       -
       {{lessonTime.finish*1000|date:'HH:mm':'UTC'}}
     </strong>
-    <span ng-if="getLesson(lessonTime, lessons)">
+    <span ng-if="getLesson(lessonTime, lessons)" class="btn">
       {{getLesson(lessonTime, lessons).Title}} ({{getLesson(lessonTime, lessons).Room}})
     </span>
     <a ng-if="!getLesson(lessonTime, lessons)" class="btn btn-link"
