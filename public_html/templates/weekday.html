@@ -6,12 +6,6 @@
       -
       {{lessonTime.finish*1000|date:'HH:mm':'UTC'}}
     </strong>
-    <span ng-if="getLesson(lessonTime, lessons)" class="btn">
-      {{getLesson(lessonTime, lessons).Title}} ({{getLesson(lessonTime, lessons).Room}})
-    </span>
-    <a ng-if="!getLesson(lessonTime, lessons)" class="btn btn-link"
-        href="#/lesson/{{day.start}}/{{$index}}/add">
-      Добавить
-    </a>
+    <lesson lessons="lessons" time="lessonTime" repeat="repeat" day="day"/>
   </div>
 </div>

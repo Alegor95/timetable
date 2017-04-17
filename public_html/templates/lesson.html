@@ -1,0 +1,7 @@
+<span ng-if="lesson" class="btn">
+  {{lesson.Title}} ({{lesson.Room}})
+</span>
+<a ng-if="!lesson" class="btn btn-link"
+    href="#/lesson/{{day.start}}/{{$index}}/add">
+  Добавить
+</a>
