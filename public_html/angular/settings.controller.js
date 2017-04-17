@@ -22,7 +22,6 @@
     });
 
     $scope.save = function (lessonsTime) {
-      console.log($scope.authorized)
       settingsService.save($scope.authorized, lessonsTime);
     }
 
