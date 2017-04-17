@@ -6,6 +6,7 @@
       -
       {{lessonTime.finish*1000|date:'HH:mm':'UTC'}}
     </strong>
-    <lesson lessons="lessons" time="lessonTime" repeat="repeat" day="day"/>
+    <lesson lessons="lessons" repeat="repeat" day="day"
+      time-idx="$index" times="time"/>
   </div>
 </div>

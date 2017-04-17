@@ -1,5 +1,5 @@
 (function (app) {
-  app.directive("lesson", function(lessonsService) {
+  app.directive("lesson", function(lessonsService, settingsService) {
 
     var UNIVERSAL_REPEAT = lessonsService.getUniversalRepeat();
 
@@ -8,8 +8,9 @@
       templateUrl: '../templates/lesson.html',
       scope: {
         lessons: '=lessons',
-        time: '=time',
+        timeIdx: '=timeIdx',
         repeat: '=repeat',
+        times: '=times',
         day: '=day'
       },
       link: function(scope) {
@@ -24,9 +25,19 @@
           }
         };
 
+        scope.time = scope.times[scope.timeIdx];
         scope.lesson = getLesson(scope.time, scope.lessons);
 
         scope.$watch('repeat', function() {
+          scope.lesson = getLesson(scope.time, scope.lessons);
+        });
+
+        scope.$watch('lessons', function() {
+          scope.lesson = getLesson(scope.time, scope.lessons);
+        })
+
+        scope.$watch('timeIdx', function() {
+          scope.time = scope.times[scope.timeIdx];
           scope.lesson = getLesson(scope.time, scope.lessons);
         });
       }
