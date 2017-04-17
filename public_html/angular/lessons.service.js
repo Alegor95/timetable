@@ -4,7 +4,8 @@
       "get": "scripts/lessons.php/hierarchy/",
       "getLessonsRepeat": "scripts/lessons.php/repeatDict",
       "getLessonsType": "scripts/lessons.php/typeDict",
-      "add": "scripts/lessons.php/"
+      "add": "scripts/lessons.php/",
+      "delete": "scripts/lessons.php/"
     }
 
     var instance = {
@@ -57,6 +58,16 @@
         }).then(function(response) {
           callback(response.data.id);
         }, function(response) {
+          throw new Error(response.data.error);
+        });
+      },
+      delete: function(id, callback) {
+        $http({
+          method: 'POST',
+          url: API_URLS["delete"] + id + "/delete"
+        }).then(function () {
+          callback();
+        }, function () {
           throw new Error(response.data.error);
         });
       }

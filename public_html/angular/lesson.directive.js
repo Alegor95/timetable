@@ -34,12 +34,20 @@
 
         scope.$watch('lessons', function() {
           scope.lesson = getLesson(scope.time, scope.lessons);
-        })
+        }, true);
 
         scope.$watch('timeIdx', function() {
           scope.time = scope.times[scope.timeIdx];
           scope.lesson = getLesson(scope.time, scope.lessons);
         });
+
+        scope.delete = function() {
+          lessonsService.delete(scope.lesson.ID, function() {
+            scope.lessons.splice(
+              scope.lessons.indexOf(scope.lesson), 1
+            );
+          });
+        }
       }
     }
   });

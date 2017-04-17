@@ -1,5 +1,8 @@
 <span ng-if="lesson" class="btn">
   {{lesson.Title}} ({{lesson.Room}})
+  <a ng-click="delete()" href="javascript:void(0)">
+    <i class="fa fa-trash"></i>
+  </a>
 </span>
 <a ng-if="!lesson" class="btn btn-link"
     href="#/lesson/{{day.start}}/{{timeIdx}}/add">
